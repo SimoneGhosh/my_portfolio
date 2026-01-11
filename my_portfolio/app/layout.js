@@ -18,7 +18,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: "ryan kim",
+  title: "Simone Ghosh",
   description: "personal website",
 };
 
