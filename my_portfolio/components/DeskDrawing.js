@@ -76,7 +76,7 @@ const DeskDrawing = () => {
     const wh = window.innerHeight;
     if (!ww || !wh) return;
     const { w, h } = naturalSize;
-    const scale = Math.min(ww / w, wh / h)*13;
+    const scale = Math.min(ww / w, wh / h);
     const x = (ww - w * scale) / 2;
     const y = (wh - h * scale) / 2;
 
@@ -96,7 +96,235 @@ const DeskDrawing = () => {
 
   const popupsData = useMemo(
     () => ({
-      Sketchbook: {
+        
+        Me: {
+        content:
+          <>
+          <h3>Hi, I'm Simone!</h3>
+          <img
+            src="/assets/portrait.jpg"
+            alt="Simone Ghosh"
+            style={{ 
+              width: "200%", 
+              maxWidth: "200px",
+              height: "auto", 
+              borderRadius: "8px",
+              margin: "10px 0"
+            }}
+          />
+          <p>
+            I'm a first-year Systems Design Engineering student at the University of Waterloo, 
+            passionate about building innovative software solutions that make a real impact.
+          </p>
+          <p>
+            When I'm not coding, you'll find me running around campus, ice skating at RIM Park, 
+            getting lost in a good book, or sketching in my notebook. I love combining my 
+            technical skills with creative thinking to solve complex problems.
+          </p>
+          <p>
+            I'm currently exploring opportunities in software engineering where I can apply my 
+            passion for development and continuous learning!
+          </p>
+        </>,
+        },
+
+        Cat: {
+        content:
+          <>
+          <h3>Meet My Coding Companion!</h3>
+          <img
+            src="/assets/cat.jpg"
+            alt="My cat"
+            style={{ 
+              width: "500%", 
+              maxWidth: "550px",
+              height: "auto", 
+              borderRadius: "8px",
+              margin: "10px 0"
+            }}
+          />
+          <p>
+            This is my adorable cat, Clark, whom I adopted from the Toronto Humane Society. 
+            He's super cute and full of personality, always brightening my day. Clark can do 
+            some amazing tricks he can sit, give a high five, and even stand on his hind legs! 
+            He's the perfect companion, making every moment a little more fun.
+          </p>
+          </>,
+        },
+
+        Laptop: {
+        content:
+          <>
+          <h3>My Projects & Experience</h3>
+          
+          <h4 style={{ marginTop: "20px", marginBottom: "10px" }}>
+            Current Position: Web Developer @ Generis
+          </h4>
+          <p>
+            I'm currently working as a web developer at Generis, where I manage 24 client websites, 
+            develop an AI-powered chatbot to enhance customer engagement, and implement machine 
+            learning solutions to automate repetitive tasks and improve workflow efficiency.
+          </p>
+
+          <h4 style={{ marginTop: "20px", marginBottom: "10px" }}>
+            Notes App - Full-Stack MERN Application
+          </h4>
+          <p>
+            Developed a responsive note-taking web application using the MERN stack (MongoDB, 
+            Express, React, Node.js). This project demonstrates my ability to build complete 
+            full-stack solutions from database design to user interface.
+          </p>
+          <p>
+            I designed and deployed RESTful APIs enabling secure CRUD operations, implementing 
+            authentication and authorization to protect user data. By integrating Axios for 
+            asynchronous data handling, I reduced client-server latency by 20%, significantly 
+            improving the user experience.
+          </p>
+          <p>
+            This project strengthened my skills in database modeling, API design, state management 
+            in React, and optimizing network performance for web applications.
+          </p>
+          <p>
+            <a
+              href="https://github.com/SimoneGhosh/Notes-App"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View project on GitHub →
+            </a>
+          </p>
+
+          <h4 style={{ marginTop: "20px", marginBottom: "10px" }}>
+            Interpreter in Go – Systems Programming
+          </h4>
+          <p>
+            Implemented a full interpreter for the Monkey programming language in Go, building 
+            every component from scratch including the lexer, parser, and Abstract Syntax Tree (AST).
+          </p>
+          <p>
+            This deep dive into compiler design taught me how programming languages work under 
+            the hood. I applied compiler-design principles to optimize recursive evaluation and 
+            improve memory efficiency, gaining hands-on experience with low-level systems programming.
+          </p>
+          <p>
+            Working in Go gave me valuable experience with a statically-typed, compiled language 
+            and deepened my understanding of language implementation, parsing algorithms, and 
+            performance optimization.
+          </p>
+          <p>
+            <a
+              href="https://github.com/SimoneGhosh/Monkey"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View project on GitHub →
+            </a>
+          </p>
+
+          <h4 style={{ marginTop: "20px", marginBottom: "10px" }}>
+            Geometry Dash Recreation
+          </h4>
+          <p>
+            My journey into programming started with this project—a Java-based recreation of 
+            Geometry Dash. I built the game mechanics from scratch, including collision detection, 
+            physics simulation, and level progression systems.
+          </p>
+          <p>
+            This project taught me fundamental programming concepts like object-oriented design, 
+            event handling, and game loop optimization. It was challenging but incredibly 
+            rewarding to see everything come together into a playable game!
+          </p>
+          <p>
+            <a
+              href="https://github.com/SimoneGhosh/Pygame"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View project on GitHub →
+            </a>
+          </p>
+
+          <h4 style={{ marginTop: "20px", marginBottom: "10px" }}>
+            This Portfolio Website
+          </h4>
+          <p>
+            This website itself is a project I'm proud of! I wanted to showcase my work in a 
+            creative and interactive way, so I hand-drew this desk scene and brought it to life 
+            using Next.js and React.
+          </p>
+          <p>
+            The SVG-based navigation with zoom and pan functionality creates an engaging user 
+            experience that reflects both my technical and artistic sides. It's built with 
+            modern web technologies and optimized for performance.
+          </p>
+          </>,
+        },
+
+        Sketchbook: {
+        content:
+          <>
+           <h3>Sketches & Ideas</h3>
+          <img
+            src="/assets/sketchbook.jpg"
+            alt="Sketchbook page"
+            style={{ 
+              width: "500%", 
+              maxWidth: "550px",
+              height: "auto", 
+              border: "2px solid #000",
+              margin: "10px 0"
+            }}
+          />
+          <p>
+            Drawing has always been a creative outlet for me. I love sketching UI concepts, 
+            wireframing project ideas, and just doodling when I need to think through a problem 
+            differently.
+          </p>
+          <p>
+            This sketchbook is where many of my projects start—including this very portfolio 
+            website! I find that putting pen to paper helps me visualize solutions before I 
+            start coding them.
+          </p>
+          </>,
+        },
+
+        Camera: {
+        content:
+          <>
+          <h3>Capturing Moments</h3>
+          <img
+            src="/assets/oweekphoto.jpeg"
+            alt="O-Week purpling"
+            style={{ 
+              width: "500%", 
+              maxWidth: "550px",
+              height: "auto", 
+              borderRadius: "8px",
+              margin: "10px 0"
+            }}
+          />
+          <p>
+            This is my dad's old digital camera, and it's become my favorite way to document 
+            university life. There's something special about using a physical camera instead of 
+            just my phone—it makes me more intentional about the moments I capture.
+          </p>
+          <p>
+            From O-Week purpling (pictured above) to spontaneous adventures around Waterloo, 
+            this camera has documented some amazing memories from my first year.
+          </p>
+          <p>
+            <a
+              href="https://ca.pinterest.com/iamnehaaa/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Check out more of my photography on Pinterest →
+            </a>
+          </p>
+          </>,
+        },
+
+      Interface: {
         content: (
           <>
             I love making music in my spare time! This is my audio interface
@@ -112,7 +340,45 @@ const DeskDrawing = () => {
           </>
         ),
       },
-      Laptop: {
+      "DE1SOC": {
+        content:
+          <>In computer engineering, we&apos;re currently learning about low level digital systems so I use the DE1-SoC quite often. It&apos;s been lots of fun learning about the foundational building blocks of computers!</>,
+      },
+      PC: {
+        content:
+          <>This is my PC that I built five years ago - it has a RTX 2080Ti and i7-8700K. I use it for school, content, music, and video games.</>,
+      },
+      Kbd: {
+        content: (
+          <>
+            This is my keyboard - I&apos;m planning on building my own Hall Effect keyboard soon, I just need to stop spending so much money... {" "}
+            <a
+              href="https://monkeytype.com/profile/frostic1393"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              my monkeytype profile
+            </a>
+          </>
+        ),
+      },
+      Mouse: {
+        content: (
+          <>
+            This is my Logitech G Pro Superlight, the perfect mouse in my opinion. I used
+            it to hit my peak rank in Valorant, Ascendant 2. Someday I&apos;ll hit radiant right? Surely...{" "}
+            <br></br>
+            <a
+              href="https://tracker.gg/valorant/profile/riot/chuchubluu%23pika/overview?platform=pc&playlist=competitive"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Valorant Tracker
+            </a>
+          </>
+        ),
+      },
+      "Mango": {
         content: (
           <>
             <p>
@@ -149,7 +415,39 @@ const DeskDrawing = () => {
           </>
         ),
       },
-      Camera: {
+      "Ubc": {
+        content: (
+          <>
+            <p>
+              Scheduling my classes through Workday was tedious — copying
+              times by hand, fixing time zones, and juggling course changes
+              every week. So I built a web app that does it all automatically, and deployed it with Vercel.
+            </p>
+            <p>
+              The UBC Workday → Calendar tool takes your course schedule and
+              converts it into a downloadable iCalendar file you can import
+              straight into Google or Apple Calendar. Built with Python, React,
+              and TypeScript, it parses Workday’s messy HTML behind the scenes
+              and delivers clean, perfectly timed events in seconds.
+            </p>
+            <p>
+              What started as a weekend project to save myself time ended up
+              helping over a hundred students manage their schedules seamlessly
+              — all through a single link shared across campus.
+            </p>
+            <p>
+              <a
+                href="https://ubcworkdaycalendartool.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit the tool
+              </a>
+            </p>
+          </>
+        ),
+      },
+      "This-website": {
         content: (
           <>
             <p>
@@ -170,7 +468,7 @@ const DeskDrawing = () => {
           </>
         ),
       },
-      Me: {
+      UBCCARD: {
         content: (
           <>
             <p>
@@ -185,7 +483,7 @@ const DeskDrawing = () => {
           </>
         ),
       },
-      Sketchbook: {
+      Midi: {
         content: (
           <>
             <p>
