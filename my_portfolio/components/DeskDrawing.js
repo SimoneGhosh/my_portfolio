@@ -15,7 +15,7 @@ const DeskDrawing = () => {
   const [transformKey, setTransformKey] = useState("initial");
 
   useEffect(() => {
-    fetch("/assets/deskdrawing.svg")
+    fetch("/assets/main.svg")
       .then((res) => res.text())
       .then((text) => setSvgContent(text));
   }, []);
@@ -225,11 +225,11 @@ const DeskDrawing = () => {
           y: e.clientY,
         });
       } else if (id === "Resume") {
-        window.open("/assets/websiteresume.pdf", "_blank");
+        window.open("/assets/resume.pdf", "_blank");
       } else if (id === "Github") {
-        window.open("https://github.com/minjunminji", "_blank");
+        window.open("https://github.com/SimoneGhosh", "_blank");
       } else if (id === "Linkedin") {
-        window.open("https://www.linkedin.com/in/ryankim373/", "_blank");
+        window.open("https://www.linkedin.com/in/simoneghosh/", "_blank");
       }
     },
     [popupsData]
@@ -377,7 +377,7 @@ const DeskDrawing = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.fixedTitle}>ryan kim</div>
+      <div className={styles.fixedTitle}>Simone Ghosh</div>
       <TransformWrapper
         key={transformKey}
         ref={transformRef}
