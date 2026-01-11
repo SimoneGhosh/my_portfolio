@@ -9,19 +9,17 @@ const DeskDrawing = () => {
   const [popup, setPopup] = useState(null);
   const svgContainerRef = useRef(null);
   const transformRef = useRef(null);
-  const [naturalSize, setNaturalSize] = useState(null);
+  const [naturalSize, setNaturalSize] = useState(null); // { w, h }
   const [viewerReady, setViewerReady] = useState(false);
   const [initialTransform, setInitialTransform] = useState(null);
   const [transformKey, setTransformKey] = useState("initial");
 
-  // Load SVG file
   useEffect(() => {
-    fetch("/assets/maindesk.svg")
+    fetch("/assets/deskdrawing.svg")
       .then((res) => res.text())
       .then((text) => setSvgContent(text));
   }, []);
 
-  // Calculate SVG dimensions
   useEffect(() => {
     if (!svgContent) return;
     const container = svgContainerRef.current;
@@ -46,7 +44,9 @@ const DeskDrawing = () => {
           w = bbox.width;
           h = bbox.height;
         }
-      } catch (_) {}
+      } catch (_) {
+        // ignore getBBox errors (e.g., if svg not rendered yet)
+      }
     }
     if (!w || !h) {
       const aw = parseFloat(svgEl.getAttribute("width"));
@@ -62,12 +62,13 @@ const DeskDrawing = () => {
     }
 
     setNaturalSize((prev) => {
-      if (prev && prev.w === w && prev.h === h) return prev;
+      if (prev && prev.w === w && prev.h === h) {
+        return prev;
+      }
       return { w, h };
     });
   }, [svgContent]);
 
-  // Calculate initial zoom and position
   useEffect(() => {
     if (!naturalSize) return;
     if (typeof window === "undefined") return;
@@ -75,10 +76,7 @@ const DeskDrawing = () => {
     const wh = window.innerHeight;
     if (!ww || !wh) return;
     const { w, h } = naturalSize;
-    
-    // Adjust this multiplier to change initial zoom level
-    // Higher = more zoomed in, Lower = more zoomed out
-    const scale = Math.min(ww / w, wh / h) * 0.9;
+    const scale = Math.min(ww / w, wh / h)*13;
     const x = (ww - w * scale) / 2;
     const y = (wh - h * scale) / 2;
 
@@ -96,129 +94,116 @@ const DeskDrawing = () => {
     }
   }, [naturalSize, transformKey]);
 
-  // Popup content for each interactive element
-  // Customize this section with your own content!
   const popupsData = useMemo(
     () => ({
-      resume: {
+      Sketchbook: {
         content: (
           <>
-            <p>
-              This is my resume! Download it to learn more about my experience and skills.
-            </p>
+            I love making music in my spare time! This is my audio interface
+            that I use when I record. Check out my music{" "}
             <a
-              href="/assets/your-resume.pdf"
+              href="https://www.instagram.com/mnjnmsc"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Download Resume
+              Instagram page
             </a>
+            !
           </>
         ),
       },
-      studentid: {
+      Laptop: {
         content: (
           <>
             <p>
-              I'm a computer science student passionate about creating 
-              interactive experiences and solving problems through code.
+              In 24 hours at HelloHacks 2025, my team and I built Mango, a
+              full-body gesture control system that lets you play Minecraft
+              using just your webcam. No sensors, no VR headset, just movement.
+              We wanted to make immersive gaming more accessible and open to
+              everyone.
             </p>
             <p>
-              <strong>Interests:</strong> Web Development, UI/UX Design, Creative Coding
+              Mango uses MediaPipe Holistic and OpenCV to track over 500 body
+              landmarks, while NumPy and PyAutoGUI translate those movements
+              into real-time keyboard and mouse inputs. Walking, hitting,
+              mining, placing, shielding — you can control it with your body.
             </p>
-          </>
-        ),
-      },
-      camera: {
-        content: (
-          <>
-            <p>
-              I love photography and capturing moments! This camera represents 
-              my creative side beyond coding.
-            </p>
-            <p>Check out my photography on Instagram!</p>
-          </>
-        ),
-      },
-      projects: {
-        content: (
-          <>
-            <h3>My Projects</h3>
-            <p>
-              I've built various web applications, games, and tools. 
-              Click on my laptop screen to explore more!
-            </p>
+            <iframe
+              width="100%"
+              height="315"
+              src="https://www.youtube.com/embed/pdja2_o8bpY"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
             <p>
               <a
-                href="https://github.com/YOUR_USERNAME"
+                href="https://devpost.com/software/mango-full-body-gesture-control-for-any-game"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                View My GitHub
+                Devpost
               </a>
             </p>
           </>
         ),
       },
-      skills: {
-        content: (
-          <>
-            <h3>Technical Skills</h3>
-            <p><strong>Languages:</strong> JavaScript, Python, Java, C++</p>
-            <p><strong>Frameworks:</strong> React, Next.js, Node.js</p>
-            <p><strong>Tools:</strong> Git, VS Code, Figma</p>
-          </>
-        ),
-      },
-      sketchbook: {
+      Camera: {
         content: (
           <>
             <p>
-              I enjoy sketching and drawing in my free time. Art and code 
-              complement each other beautifully!
+              This website is a personal project to showcase my skills and
+              projects in a more creative and interactive way. I&apos;ve always
+              loved drawing, and I wanted to incorporate that into my
+              portfolio. It&apos;s built with Next.js and uses a zoomable SVG for
+              navigation.
             </p>
-            <p>This website itself started as a sketch in this very book.</p>
-          </>
-        ),
-      },
-      phone: {
-        content: (
-          <>
-            <p>Always connected and ready to collaborate on new projects!</p>
-            <p>Feel free to reach out via email or LinkedIn.</p>
-          </>
-        ),
-      },
-      laptop: {
-        content: (
-          <>
-            <h3>My Workspace</h3>
             <p>
-              This is where the magic happens! I spend countless hours here 
-              coding, learning, and building cool stuff.
+              This is the reference I used for the website drawing (ignore my messy desk):
             </p>
-            <p>Current project: This interactive portfolio!</p>
+            <img
+              src="/assets/referenceimage.jpg"
+              alt="Reference photo used for the website drawing"
+              style={{ width: "100%", height: "auto", border: "2px solid #000" }}
+            />
           </>
         ),
       },
-      cat: {
+      Me: {
         content: (
           <>
             <p>
-              Meet my coding companion! Every developer needs a furry friend 
-              to keep them company during late-night debugging sessions.
+              I&apos;m a 2nd year computer engineering student at the University
+              of British Columbia.
             </p>
-            <p>🐱 Meow!</p>
+            <p>
+              <strong>Relevant Coursework:</strong> Data Structures and
+              Algorithms, Object-Oriented Programming, Linear Algebra,
+              Probability & Statistics, FPGA Design, Digital Systems
+            </p>
           </>
         ),
       },
-      table: {
+      Sketchbook: {
         content: (
           <>
             <p>
-              This is my desk where all the creativity and coding happens!
-              Click on the different items to learn more about me.
+              I use this AKAI APC Key25 to record instrumentals for my music!
+              I&apos;ve studied classical piano since I was five years old, and
+              my favourite composer is Chopin. Here&apos;s me performing his
+              first piano concerto with the VSO Symphony Orchestra at the
+              Orpheum Theatre:
             </p>
+            <iframe
+              width="100%"
+              height="315"
+              src="https://www.youtube.com/embed/ueOshaElP9E"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </>
         ),
       },
@@ -226,7 +211,6 @@ const DeskDrawing = () => {
     []
   );
 
-  // Handle clicks on interactive elements
   const handleSvgClick = useCallback(
     (e) => {
       const target = e.target.closest("g[id]");
@@ -234,22 +218,18 @@ const DeskDrawing = () => {
 
       const id = target.id;
 
-      // Show popup for elements with content
       if (popupsData[id]) {
         setPopup({
           content: popupsData[id].content,
           x: e.clientX,
           y: e.clientY,
         });
-      } 
-      // Handle external links
-      // Customize these URLs with your own!
-      else if (id === "resume") {
-        window.open("/assets/your-resume.pdf", "_blank");
-      } else if (id === "projects") {
-        window.open("https://github.com/YOUR_USERNAME", "_blank");
-      } else if (id === "studentid") {
-        window.open("https://www.linkedin.com/in/YOUR_PROFILE/", "_blank");
+      } else if (id === "Resume") {
+        window.open("/assets/websiteresume.pdf", "_blank");
+      } else if (id === "Github") {
+        window.open("https://github.com/minjunminji", "_blank");
+      } else if (id === "Linkedin") {
+        window.open("https://www.linkedin.com/in/ryankim373/", "_blank");
       }
     },
     [popupsData]
@@ -259,10 +239,9 @@ const DeskDrawing = () => {
     setPopup(null);
   };
 
-  // Center and fit SVG to viewport
   const fitAndCenter = useCallback(() => {
     const apiMaybe = transformRef.current;
-    const api = apiMaybe?.instance ?? apiMaybe;
+    const api = apiMaybe?.instance ?? apiMaybe; // support v3/v4 shapes
     if (!api || !naturalSize) return;
     const wrapper = api.wrapperComponent;
     if (!wrapper && typeof window === "undefined") return;
@@ -270,7 +249,7 @@ const DeskDrawing = () => {
     const wh = wrapper?.clientHeight || window.innerHeight;
     const { w, h } = naturalSize;
     if (!ww || !wh || !w || !h) return;
-    const scale = Math.min(ww / w, wh / h) * 0.9;
+    const scale = Math.min(ww / w, wh / h);
     if (typeof api.centerView === "function") {
       api.centerView(scale, 0);
       return;
@@ -282,7 +261,7 @@ const DeskDrawing = () => {
     }
   }, [naturalSize]);
 
-  // Recenter after SVG loads
+  // Recenter after SVG content is injected
   useEffect(() => {
     if (!viewerReady || !svgContent || !naturalSize) return;
     const id = requestAnimationFrame(() => {
@@ -299,7 +278,6 @@ const DeskDrawing = () => {
     return () => window.removeEventListener("resize", onResize);
   }, [fitAndCenter, viewerReady]);
 
-  // Add hover effects
   useEffect(() => {
     const svgContainer = svgContainerRef.current;
     if (!svgContainer) return;
@@ -309,22 +287,21 @@ const DeskDrawing = () => {
       if (
         target &&
         (popupsData[target.id] ||
-          ["resume", "projects", "studentid"].includes(target.id))
+          ["Resume", "Github", "Linkedin"].includes(target.id))
       ) {
         target.style.cursor = "pointer";
         target.style.transition =
           "transform 0.2s ease-in-out, filter 0.2s ease-in-out";
         target.style.transform = "translateY(-2px)";
-        target.style.filter = "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3))";
+        target.style.filter = "drop-shadow(1px 1px 1px rgb(0 0 0 / 0.4))";
 
-        // Change stroke color on hover
-        const paths = target.querySelectorAll("path, circle, rect, line, polygon");
-        paths.forEach((el) => {
-          const originalStroke = el.getAttribute("stroke");
+        const paths = target.querySelectorAll("path");
+        paths.forEach((path) => {
+          const originalStroke = path.getAttribute("stroke");
           if (originalStroke) {
-            el.setAttribute("data-original-stroke", originalStroke);
+            path.setAttribute("data-original-stroke", originalStroke);
           }
-          el.setAttribute("stroke", "#4287f5");
+          path.setAttribute("stroke", "#4287f5");
         });
       }
     };
@@ -335,13 +312,12 @@ const DeskDrawing = () => {
         target.style.transform = "";
         target.style.filter = "";
 
-        // Restore original stroke color
-        const paths = target.querySelectorAll("path, circle, rect, line, polygon");
-        paths.forEach((el) => {
-          const originalStroke = el.getAttribute("data-original-stroke");
+        const paths = target.querySelectorAll("path");
+        paths.forEach((path) => {
+          const originalStroke = path.getAttribute("data-original-stroke");
           if (originalStroke) {
-            el.setAttribute("stroke", originalStroke);
-            el.removeAttribute("data-original-stroke");
+            path.setAttribute("stroke", originalStroke);
+            path.removeAttribute("data-original-stroke");
           }
         });
       }
@@ -358,16 +334,15 @@ const DeskDrawing = () => {
     };
   }, [svgContent, handleSvgClick, popupsData, transformKey]);
 
-  // Add invisible bounding boxes for better click detection
   useEffect(() => {
     const svgContainer = svgContainerRef.current;
     if (!svgContainer || !svgContent) return;
 
     const interactiveIds = [
       ...Object.keys(popupsData),
-      "resume",
-      "projects",
-      "studentid",
+      "Resume",
+      "Github",
+      "Linkedin",
     ];
 
     const ensureBoundingBoxes = () => {
@@ -378,7 +353,10 @@ const DeskDrawing = () => {
         let rect = group.querySelector(".bbox");
         if (!rect) {
           const bbox = group.getBBox();
-          rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          rect = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "rect"
+          );
           rect.classList.add("bbox");
           rect.setAttribute("fill", "transparent");
           rect.style.pointerEvents = "all";
@@ -399,9 +377,7 @@ const DeskDrawing = () => {
 
   return (
     <div className={styles.container}>
-      {/* Change this to your name! */}
-      <div className={styles.fixedTitle}>simone ghosh</div>
-      
+      <div className={styles.fixedTitle}>ryan kim</div>
       <TransformWrapper
         key={transformKey}
         ref={transformRef}
@@ -426,7 +402,6 @@ const DeskDrawing = () => {
           />
         </TransformComponent>
       </TransformWrapper>
-      
       {popup && (
         <Popup
           content={popup.content}

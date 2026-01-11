@@ -1,6 +1,3 @@
-// ============================================
-// FILE 1: components/Popup.js
-// ============================================
 "use client";
 import { useEffect, useRef, useState } from "react";
 import styles from "./Popup.module.css";
