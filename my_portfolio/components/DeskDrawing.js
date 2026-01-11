@@ -323,188 +323,6 @@ const DeskDrawing = () => {
           </p>
           </>,
         },
-
-      Interface: {
-        content: (
-          <>
-            I love making music in my spare time! This is my audio interface
-            that I use when I record. Check out my music{" "}
-            <a
-              href="https://www.instagram.com/mnjnmsc"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Instagram page
-            </a>
-            !
-          </>
-        ),
-      },
-      "DE1SOC": {
-        content:
-          <>In computer engineering, we&apos;re currently learning about low level digital systems so I use the DE1-SoC quite often. It&apos;s been lots of fun learning about the foundational building blocks of computers!</>,
-      },
-      PC: {
-        content:
-          <>This is my PC that I built five years ago - it has a RTX 2080Ti and i7-8700K. I use it for school, content, music, and video games.</>,
-      },
-      Kbd: {
-        content: (
-          <>
-            This is my keyboard - I&apos;m planning on building my own Hall Effect keyboard soon, I just need to stop spending so much money... {" "}
-            <a
-              href="https://monkeytype.com/profile/frostic1393"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              my monkeytype profile
-            </a>
-          </>
-        ),
-      },
-      Mouse: {
-        content: (
-          <>
-            This is my Logitech G Pro Superlight, the perfect mouse in my opinion. I used
-            it to hit my peak rank in Valorant, Ascendant 2. Someday I&apos;ll hit radiant right? Surely...{" "}
-            <br></br>
-            <a
-              href="https://tracker.gg/valorant/profile/riot/chuchubluu%23pika/overview?platform=pc&playlist=competitive"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Valorant Tracker
-            </a>
-          </>
-        ),
-      },
-      "Mango": {
-        content: (
-          <>
-            <p>
-              In 24 hours at HelloHacks 2025, my team and I built Mango, a
-              full-body gesture control system that lets you play Minecraft
-              using just your webcam. No sensors, no VR headset, just movement.
-              We wanted to make immersive gaming more accessible and open to
-              everyone.
-            </p>
-            <p>
-              Mango uses MediaPipe Holistic and OpenCV to track over 500 body
-              landmarks, while NumPy and PyAutoGUI translate those movements
-              into real-time keyboard and mouse inputs. Walking, hitting,
-              mining, placing, shielding — you can control it with your body.
-            </p>
-            <iframe
-              width="100%"
-              height="315"
-              src="https://www.youtube.com/embed/pdja2_o8bpY"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-            <p>
-              <a
-                href="https://devpost.com/software/mango-full-body-gesture-control-for-any-game"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Devpost
-              </a>
-            </p>
-          </>
-        ),
-      },
-      "Ubc": {
-        content: (
-          <>
-            <p>
-              Scheduling my classes through Workday was tedious — copying
-              times by hand, fixing time zones, and juggling course changes
-              every week. So I built a web app that does it all automatically, and deployed it with Vercel.
-            </p>
-            <p>
-              The UBC Workday → Calendar tool takes your course schedule and
-              converts it into a downloadable iCalendar file you can import
-              straight into Google or Apple Calendar. Built with Python, React,
-              and TypeScript, it parses Workday’s messy HTML behind the scenes
-              and delivers clean, perfectly timed events in seconds.
-            </p>
-            <p>
-              What started as a weekend project to save myself time ended up
-              helping over a hundred students manage their schedules seamlessly
-              — all through a single link shared across campus.
-            </p>
-            <p>
-              <a
-                href="https://ubcworkdaycalendartool.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Visit the tool
-              </a>
-            </p>
-          </>
-        ),
-      },
-      "This-website": {
-        content: (
-          <>
-            <p>
-              This website is a personal project to showcase my skills and
-              projects in a more creative and interactive way. I&apos;ve always
-              loved drawing, and I wanted to incorporate that into my
-              portfolio. It&apos;s built with Next.js and uses a zoomable SVG for
-              navigation.
-            </p>
-            <p>
-              This is the reference I used for the website drawing (ignore my messy desk):
-            </p>
-            <img
-              src="/assets/referenceimage.jpg"
-              alt="Reference photo used for the website drawing"
-              style={{ width: "100%", height: "auto", border: "2px solid #000" }}
-            />
-          </>
-        ),
-      },
-      UBCCARD: {
-        content: (
-          <>
-            <p>
-              I&apos;m a 2nd year computer engineering student at the University
-              of British Columbia.
-            </p>
-            <p>
-              <strong>Relevant Coursework:</strong> Data Structures and
-              Algorithms, Object-Oriented Programming, Linear Algebra,
-              Probability & Statistics, FPGA Design, Digital Systems
-            </p>
-          </>
-        ),
-      },
-      Midi: {
-        content: (
-          <>
-            <p>
-              I use this AKAI APC Key25 to record instrumentals for my music!
-              I&apos;ve studied classical piano since I was five years old, and
-              my favourite composer is Chopin. Here&apos;s me performing his
-              first piano concerto with the VSO Symphony Orchestra at the
-              Orpheum Theatre:
-            </p>
-            <iframe
-              width="100%"
-              height="315"
-              src="https://www.youtube.com/embed/ueOshaElP9E"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </>
-        ),
-      },
     }),
     []
   );
@@ -577,60 +395,67 @@ const DeskDrawing = () => {
   }, [fitAndCenter, viewerReady]);
 
   useEffect(() => {
-    const svgContainer = svgContainerRef.current;
-    if (!svgContainer) return;
+  const svgContainer = svgContainerRef.current;
+  if (!svgContainer) return;
 
-    const handleMouseOver = (e) => {
-      const target = e.target.closest("g[id]");
-      if (
-        target &&
-        (popupsData[target.id] ||
-          ["Resume", "Github", "Linkedin"].includes(target.id))
-      ) {
-        target.style.cursor = "pointer";
-        target.style.transition =
-          "transform 0.2s ease-in-out, filter 0.2s ease-in-out";
-        target.style.transform = "translateY(-2px)";
-        target.style.filter = "drop-shadow(1px 1px 1px rgb(0 0 0 / 0.4))";
+  const handleMouseOver = (e) => {
+  // Only trigger on the actual target group, not child elements
+  if (e.target.tagName.toLowerCase() === 'svg') return;
+  
+  const target = e.target.closest("g[id]");
+  if (!target) return;
+  
+  // Check if this is an interactive element
+  if (
+    !popupsData[target.id] &&
+    !["Resume", "Github", "Linkedin"].includes(target.id)
+  ) {
+    return;
+  }
 
-        const paths = target.querySelectorAll("path");
-        paths.forEach((path) => {
-          const originalStroke = path.getAttribute("stroke");
-          if (originalStroke) {
-            path.setAttribute("data-original-stroke", originalStroke);
-          }
-          path.setAttribute("stroke", "#4287f5");
-        });
+  // Apply hover styles (no color change)
+  target.style.cursor = "pointer";
+  target.style.transition = "transform 0.2s ease-in-out, filter 0.2s ease-in-out";
+  target.style.transform = "translateY(-2px)";
+  target.style.filter = "drop-shadow(2px 2px 3px rgb(0 0 0 / 0.3))";
+    // Change stroke color
+    
+  };
+
+  const handleMouseOut = (e) => {
+    // Only trigger when actually leaving the group
+    if (e.target.tagName.toLowerCase() === 'svg') return;
+    
+    const target = e.target.closest("g[id]");
+    if (!target) return;
+
+    // Remove hover styles
+    target.style.transform = "";
+    target.style.filter = "";
+    target.style.cursor = "";
+
+    // Restore original stroke colors
+    const elements = target.querySelectorAll("path, circle, rect, line, polygon, ellipse, polyline");
+    elements.forEach((el) => {
+      const originalStroke = el.getAttribute("data-original-stroke");
+      if (originalStroke) {
+        el.setAttribute("stroke", originalStroke);
+        el.removeAttribute("data-original-stroke");
       }
-    };
+    });
+  };
 
-    const handleMouseOut = (e) => {
-      const target = e.target.closest("g[id]");
-      if (target) {
-        target.style.transform = "";
-        target.style.filter = "";
+  // Use capturing phase for better event handling
+  svgContainer.addEventListener("mouseover", handleMouseOver, true);
+  svgContainer.addEventListener("mouseout", handleMouseOut, true);
+  svgContainer.addEventListener("click", handleSvgClick);
 
-        const paths = target.querySelectorAll("path");
-        paths.forEach((path) => {
-          const originalStroke = path.getAttribute("data-original-stroke");
-          if (originalStroke) {
-            path.setAttribute("stroke", originalStroke);
-            path.removeAttribute("data-original-stroke");
-          }
-        });
-      }
-    };
-
-    svgContainer.addEventListener("mouseover", handleMouseOver);
-    svgContainer.addEventListener("mouseout", handleMouseOut);
-    svgContainer.addEventListener("click", handleSvgClick);
-
-    return () => {
-      svgContainer.removeEventListener("mouseover", handleMouseOver);
-      svgContainer.removeEventListener("mouseout", handleMouseOut);
-      svgContainer.removeEventListener("click", handleSvgClick);
-    };
-  }, [svgContent, handleSvgClick, popupsData, transformKey]);
+  return () => {
+    svgContainer.removeEventListener("mouseover", handleMouseOver, true);
+    svgContainer.removeEventListener("mouseout", handleMouseOut, true);
+    svgContainer.removeEventListener("click", handleSvgClick);
+  };
+}, [svgContent, handleSvgClick, popupsData, transformKey]);
 
   useEffect(() => {
     const svgContainer = svgContainerRef.current;
@@ -675,7 +500,13 @@ const DeskDrawing = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.fixedTitle}>Simone Ghosh</div>
+      <div className={styles.fixedTitle}>
+        <img 
+            src="/assets/name-logo.svg" 
+            alt="Simone Ghosh" 
+            style={{ height: 'auto', width: '100%', maxWidth: "1000px", }}
+        />
+        </div>
       <TransformWrapper
         key={transformKey}
         ref={transformRef}
