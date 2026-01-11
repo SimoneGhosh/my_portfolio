@@ -117,9 +117,9 @@ const DeskDrawing = () => {
             passionate about building innovative software solutions that make a real impact.
           </p>
           <p>
-            When I'm not coding, you'll find me running around campus, ice skating at RIM Park, 
-            getting lost in a good book, or sketching in my notebook. I love combining my 
-            technical skills with creative thinking to solve complex problems.
+            When I'm not coding, you'll find me running, drawing, or listening to 
+            Olivia Dean, Laufey, and Beabadoobee. I love combining my technical 
+            skills with creative thinking to solve complex problems.
           </p>
           <p>
             I'm currently exploring opportunities in software engineering where I can apply my 
