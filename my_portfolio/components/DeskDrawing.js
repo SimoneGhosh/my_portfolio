@@ -539,6 +539,24 @@ const DeskDrawing = () => {
           y={popup.y}
         />
       )}
+
+
+      <div className={styles.fixedFooter}>
+        <div>
+        <a href="https://sydeb.me/#https://simoneghosh.vercel.app/?nav=prev" style={{ textDecoration: "none", color: "black" }}>
+            &lt;
+        </a>
+
+        <a href="https://sydeb.me" target="_blank">
+            <img src="https://sydeb.me/icons/black.svg" alt="SYDE/BME Webring" style={{ width: "24px" }} />
+        </a>
+
+        <a href="https://sydeb.me/#https://simoneghosh.vercel.app/?nav=next" style={{ textDecoration: "none", color: "black" }}>
+            &gt;
+        </a>
+    </div>
+        </div>
+
     </div>
   );
 };
